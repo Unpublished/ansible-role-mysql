@@ -3,10 +3,6 @@ name: CI
 'on':
   pull_request:
   push:
-    branches:
-      - master
-  schedule:
-    - cron: "0 1 * * 3"
 
 defaults:
   run:
@@ -71,7 +67,7 @@ jobs:
         if: ${{ startsWith(matrix.distro, 'debian') }}
 
       - name: Run Molecule tests.
-        run: molecule test
+        run: molecule --debug test
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
